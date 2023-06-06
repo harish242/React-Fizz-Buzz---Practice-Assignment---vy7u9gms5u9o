@@ -1,36 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/App.css';
-import {useState} from 'react'
 const App = () => {
-const[state,setState]=useState(1)
-const[color,setColor]=useState('normal')
-const Increment=()=>{
-setState(state=>state+1)
 
-}
-const decrement=()=>{
-  setState(state=>state-1)
+const [count, setCount] = useState(1);
+const [styleName, setStyleName] = useState("");
 
-}
-const getCounterClass = () => {
-  if (state % 3 === 0 && state % 5 === 0) {
-     setColor('fizzbuzz');
-  } else if (state % 3 === 0) {
-    setColor('fizz');
-  } else if (state % 5 === 0) {
-    setColor('buzz');
-  } else {
-    setColor('normal');
-  }
-};
-
+  useEffect(() => {
+    if(count % 3 === 0 && count % 5 === 0){
+      setStyleName("fizzbuzz");
+    }
+    else if(count % 5 === 0){
+      setStyleName("buzz");
+    }
+    else if(count % 3 === 0){
+      setStyleName("fizz");
+    }
+    else{
+      setStyleName("normal");
+    }
+  }, [count]);
   
   return (
     <div id="main">
-      
-      <button onClick={Increment}>Increment</button>
-      <div id="counter" className={getCounterClass()}>{state}</div>
-      <button onClick={decrement}>Decrement</button>
+      <button id="increment" onClick={()=>{setCount((prevcount) => prevcount + 1)}}>Increment</button>
+        <div id="counter" className={styleName}>{count}</div>
+        <button id="decrement" onClick={()=>{setCount((prevcount) => prevcount - 1)}}>Decrement</button>
+
     </div>
   )
 }
