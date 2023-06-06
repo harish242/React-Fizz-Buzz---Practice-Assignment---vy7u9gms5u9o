@@ -29,7 +29,7 @@ const getCounterClass = () => {
     <div id="main">
       
       <button onClick={Increment}>Increment</button>
-      <div id="counter" className={getCounterClass()}>{state}</div>
+      <div id="counter" className={getCounterClass}>{state}</div>
       <button onClick={decrement}>Decrement</button>
     </div>
   )
